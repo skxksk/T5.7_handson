@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+  <context id="T5Tables" targetRuntime="MyBatis3">
+
+    <!-- スキーマ情報を取得する DB への接続設定 -->
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+        connectionURL="jdbc:mysql://localhost:3306/t5db"
+        userId="root"
+        password="mysql">
+    </jdbcConnection>
+
+    <!-- SELECT 結果等を格納するドメインモデルを生成する設定 -->
+    <javaModelGenerator targetPackage="com.denny.t5.handson.domain.model.entity" targetProject="handson-domain/src/main/java">
+      <property name="enableSubPackages" value="true" />
+      <!-- <property name="trimStrings" value="true" /> -->
+    </javaModelGenerator>
+
+    <!-- SQL 設定が記述された XML を生成する設定 -->
+    <sqlMapGenerator targetPackage="com.denny.t5.handson.domain.mapper" targetProject="handson-domain/src/main/resources">
+      <property name="enableSubPackages" value="true" />
+    </sqlMapGenerator>
+
+    <!-- マッパークラスを生成する設定 -->
+    <javaClientGenerator type="XMLMAPPER" targetPackage="com.denny.t5.handson.domain.mapper" targetProject="handson-domain/src/main/java">
+      <property name="enableSubPackages" value="true" />
+    </javaClientGenerator>
+
+    <!-- コードを生成するテーブルを指定 -->
+    <table tableName="DEPT"
+            enableDeleteByExample="false" enableCountByExample="false"
+            enableUpdateByExample="false" selectByExampleQueryId="false"
+            enableSelectByExample="false" modelType="flat">
+      <!-- <property name="useActualColumnNames" value="true" /> -->
+      <!-- <columnOverride column="created_at" javaType="java.sql.Timestamp" /> -->
+      <!-- <columnOverride column="updated_at" javaType="java.sql.Timestamp" /> -->
+    </table>
+
+    <table tableName="JOB"
+            enableDeleteByExample="false" enableCountByExample="false"
+            enableUpdateByExample="false" selectByExampleQueryId="false"
+            enableSelectByExample="false" modelType="flat">
+    </table>
+
+    <table tableName="EMP"
+            enableDeleteByExample="false" enableCountByExample="false"
+            enableUpdateByExample="false" selectByExampleQueryId="false"
+            enableSelectByExample="false" modelType="flat">
+    </table>
+
+  </context>
+</generatorConfiguration>
