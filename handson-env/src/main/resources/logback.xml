@@ -34,10 +34,10 @@
 
     <!-- Application Loggers -->
     <logger name="com.denny.t5.handson">
-        <level value="debug" />
+        <level value="trace" />
     </logger>
 
-    <logger name="com.denny.t5.handson.domain.repository">
+    <logger name="com.denny.t5.handson.domain">
         <level value="trace" />
     </logger>
 

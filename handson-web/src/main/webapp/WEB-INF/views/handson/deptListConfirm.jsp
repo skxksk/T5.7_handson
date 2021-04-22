@@ -21,7 +21,8 @@
             <c:forEach var="dept" items="${deptList}">
                 <tr>
                     <td><c:out value="${dept.deptId}" /></td>
-                    <td><c:out value="${dept.dname}" /></td>
+                    <%-- <td><c:out value="${dept.dname}" /></td> --%>
+                    <td><a href="${pageContext.request.contextPath}/emps?deptId=${dept.deptId}"><c:out value="${dept.dname}" /></a></td>
                     <td><c:out value="${dept.loc}" /></td>
                     <td><fmt:formatDate value="${dept.createdAt}" pattern="yyyy-MM-dd" /></td>
                 </tr>

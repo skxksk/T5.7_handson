@@ -20,17 +20,7 @@ public class DeptConfirmBLogicImpl implements DeptConfirmBLogic {
     @Override
     public List<Dept> getDeptList() {
 
-        List<Dept> resultList = deptMapper.selectAll();
-
-//        Dept dept = new Dept();
-//        dept.setDeptId("123");
-//        dept.setDname("人事部");
-//        dept.setLoc("豊洲");
-//        dept.setCreatedAt(new Date());
-//        dept.setCreatedAt(new Date());
-//        resultList.add(dept);
-
-        return resultList;
+        return deptMapper.selectAll();
     }
 
 }
