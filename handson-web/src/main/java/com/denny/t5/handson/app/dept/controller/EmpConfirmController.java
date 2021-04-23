@@ -8,11 +8,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.denny.t5.handson.app.dept.form.EmpConfirmForm;
 import com.denny.t5.handson.domain.blogic.emp.EmpConfirmBLogic;
 import com.denny.t5.handson.domain.model.dto.EmpInfoDTO;
 
@@ -27,10 +25,10 @@ public class EmpConfirmController {
     @Inject
     private EmpConfirmBLogic empConfirmBLogic;
 
-    @ModelAttribute
-    public EmpConfirmForm setUpForm() {
-        return new EmpConfirmForm();
-    }
+//    @ModelAttribute
+//    public EmpConfirmForm setUpForm() {
+//        return new EmpConfirmForm();
+//    }
 
     /**
      * Simply selects the home view to render by returning its name.

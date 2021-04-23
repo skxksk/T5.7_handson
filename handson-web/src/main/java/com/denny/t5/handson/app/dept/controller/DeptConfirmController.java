@@ -8,10 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.denny.t5.handson.app.dept.form.DeptConfirmForm;
 import com.denny.t5.handson.domain.blogic.dept.DeptConfirmBLogic;
 
 /**
@@ -25,10 +23,10 @@ public class DeptConfirmController {
     @Inject
     private DeptConfirmBLogic deptConfirmBLogic;
 
-    @ModelAttribute
-    public DeptConfirmForm setUpForm() {
-        return new DeptConfirmForm();
-    }
+//    @ModelAttribute
+//    public DeptConfirmForm setUpForm() {
+//        return new DeptConfirmForm();
+//    }
 
     /**
      * Simply selects the home view to render by returning its name.
