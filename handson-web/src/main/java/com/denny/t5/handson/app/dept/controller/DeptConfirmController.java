@@ -37,7 +37,7 @@ public class DeptConfirmController {
 
         model.addAttribute("deptList", deptConfirmBLogic.getDeptList());
 
-        return "handson/deptListConfirm";
+        return "handson/deptList";
     }
 
 }

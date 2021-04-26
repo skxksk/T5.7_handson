@@ -8,14 +8,10 @@
 <body>
     <h1>Hello 社員一覧画面</h1>
 
-<%--     <form:form
-        action="${pageContext.request.contextPath}/newEmp"
-        method="post">
-        modelAttribute="todoForm"
-        cssClass="inline"
-
+<%--     <form:form modelAttribute="empConfirmForm" >
         <form:button>社員情報新規登録</form:button>
     </form:form> --%>
+
     <table>
         <thead>
             <tr>
@@ -30,7 +26,7 @@
             <c:forEach var="empInfo" items="${empInfoList}">
                 <tr>
                     <td><c:out value="${empInfo.empId}" /></td>
-                    <td><c:out value="${empInfo.ename}" /></td>
+                    <td><a href="${pageContext.request.contextPath}/empInfo?empId=${empInfo.empId}"><c:out value="${empInfo.ename}" /></a></td>
                     <td><c:out value="${empInfo.mgrName}" /></td>
                     <td><fmt:formatDate value="${empInfo.hiredDate}" pattern="yyyy-MM-dd" /></td>
                     <td><fmt:formatNumber value="${f:h(empInfo.sal)}" type="CURRENCY" currencySymbol="￥"/></td>
