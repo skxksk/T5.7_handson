@@ -1,4 +1,4 @@
-package com.denny.t5.handson.app.dept.form;
+package com.denny.t5.handson.app.emp.form;
 
 import java.io.Serializable;
 

@@ -8,6 +8,10 @@
 <body>
     <h1>Hello 社員情報確認画面</h1>
 
+    <form:form modelAttribute="empEditForm" action="${pageContext.request.contextPath}/empEdit?empId=${empInfo.empId}">
+        <form:button>社員情報編集</form:button>
+    </form:form>
+
     <table>
         <tbody>
             <tr>

@@ -10,7 +10,7 @@ public class Emp {
      *
      * @mbg.generated Wed Apr 21 19:10:51 JST 2021
      */
-    private Integer empId;
+    private String empId;
 
     /**
      *
@@ -101,7 +101,7 @@ public class Emp {
      *
      * @mbg.generated Wed Apr 21 19:10:51 JST 2021
      */
-    public Integer getEmpId() {
+    public String getEmpId() {
         return empId;
     }
 
@@ -113,7 +113,7 @@ public class Emp {
      *
      * @mbg.generated Wed Apr 21 19:10:51 JST 2021
      */
-    public void setEmpId(Integer empId) {
+    public void setEmpId(String empId) {
         this.empId = empId;
     }
 

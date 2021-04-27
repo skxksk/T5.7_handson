@@ -68,8 +68,11 @@
   <resultMap id="EmpDetailInfoMap" type="com.denny.t5.handson.domain.model.dto.EmpInfoDTO">
     <id column="EMP_ID" jdbcType="INTEGER" property="empId" />
     <result column="ENAME" jdbcType="VARCHAR" property="ename" />
+    <result column="MGR" jdbcType="VARCHAR" property="mgr" />
     <result column="MGR_NAME" jdbcType="VARCHAR" property="mgrName" />
+    <result column="DEPT_ID" jdbcType="INTEGER" property="deptId" />
     <result column="DNAME" jdbcType="VARCHAR" property="dname" />
+    <result column="JOB_ID" jdbcType="VARCHAR" property="jobId" />
     <result column="JNAME" jdbcType="VARCHAR" property="jname" />
     <result column="HIRED_DATE" jdbcType="DATE" property="hiredDate" />
     <result column="SAL" jdbcType="INTEGER" property="sal" />
@@ -78,11 +81,14 @@
     SELECT
       EMP.EMP_ID,
       EMP.ENAME,
+      EMP.MGR,
       MGR.ENAME MGR_NAME,
       DEPT.DNAME,
       JOB.JNAME,
+      EMP.JOB_ID,
       EMP.HIRED_DATE,
-      EMP.SAL
+      EMP.SAL,
+      EMP.DEPT_ID
     FROM
       EMP EMP
       LEFT JOIN EMP MGR
@@ -94,6 +100,33 @@
     WHERE
       EMP.EMP_ID = #{empId,jdbcType=VARCHAR}
       AND EMP.DEL_FLG = '0'
+  </select>
+
+  <!-- マネージャ情報リストを取得する。 -->
+  <resultMap id="MgrInfoMap" type="com.denny.t5.handson.domain.model.dto.EmpInfoDTO">
+    <id column="EMP_ID" jdbcType="INTEGER" property="empId" />
+    <result column="ENAME" jdbcType="VARCHAR" property="ename" />
+    <result column="JNAME" jdbcType="VARCHAR" property="jname" />
+  </resultMap>
+  <select id="selectMgrInfoList" parameterType="com.denny.t5.handson.domain.model.entity.Emp" resultMap="MgrInfoMap">
+    SELECT
+      EMP.EMP_ID,
+      EMP.ENAME,
+      JOB.JNAME
+    FROM
+      EMP,
+      JOB
+    WHERE
+      EMP.JOB_ID = JOB.JOB_ID
+      <![CDATA[
+      AND EMP.JOB_ID < #{jobId,jdbcType=VARCHAR}
+      ]]>
+      AND EMP.DEPT_ID = #{deptId,jdbcType=VARCHAR}
+      AND EMP.DEL_FLG = '0'
+      AND JOB.DEL_FLG = '0'
+    ORDER BY
+      EMP.JOB_ID,
+      EMP.EMP_ID
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">

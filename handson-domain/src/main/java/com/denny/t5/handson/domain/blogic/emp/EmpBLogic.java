@@ -8,4 +8,7 @@ public interface EmpBLogic {
     List<EmpInfoDTO> getEmpList(String deptId);
 
     EmpInfoDTO getEmpDetailInfo(String empId);
+
+    List<EmpInfoDTO> getMgrInfoList(String deptId, String jobId);
+
 }

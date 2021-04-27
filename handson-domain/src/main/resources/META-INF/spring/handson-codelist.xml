@@ -25,4 +25,19 @@
     </bean>
     -->
 
+    <!-- 役職 -->
+    <bean id="CL_JOB" parent="AbstractJdbcCodeList">
+        <property name="querySql" value="SELECT job_id, jname FROM job ORDER BY job_id" />
+        <property name="valueColumn" value="job_id" />
+        <property name="labelColumn" value="jname" />
+    </bean>
+
+    <!-- 部署 -->
+    <bean id="CL_DEPT" parent="AbstractJdbcCodeList">
+        <property name="querySql" value="SELECT dept_id, dname FROM dept ORDER BY dept_id" />
+        <property name="valueColumn" value="dept_id" />
+        <property name="labelColumn" value="dname" />
+    </bean>
+
+
 </beans>

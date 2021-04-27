@@ -8,9 +8,9 @@
 <body>
     <h1>Hello 社員一覧画面</h1>
 
-<%--     <form:form modelAttribute="empConfirmForm" >
+    <form:form modelAttribute="empEditForm" action="${pageContext.request.contextPath}/newEmp">
         <form:button>社員情報新規登録</form:button>
-    </form:form> --%>
+    </form:form>
 
     <table>
         <thead>

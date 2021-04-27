@@ -12,6 +12,7 @@ import org.terasoluna.gfw.common.exception.BusinessException;
 
 import com.denny.t5.handson.domain.mapper.EmpMapper;
 import com.denny.t5.handson.domain.model.dto.EmpInfoDTO;
+import com.denny.t5.handson.domain.model.entity.Emp;
 
 @Service
 @Transactional
@@ -26,6 +27,7 @@ public class EmpBLogicImpl implements EmpBLogic {
     public List<EmpInfoDTO> getEmpList(String deptId) {
 
         List<EmpInfoDTO> empInfoList = empMapper.selectByDeptId(deptId);
+
         if (empInfoList.isEmpty()) {
             logger.warn("社員情報が存在しません。");
         }
@@ -43,5 +45,17 @@ public class EmpBLogicImpl implements EmpBLogic {
         }
 
         return empInfo;
+    }
+
+    @Override
+    public List<EmpInfoDTO> getMgrInfoList(String deptId, String jobId) {
+
+        Emp param = new Emp();
+        param.setDeptId(deptId);
+        param.setJobId(jobId);
+
+        List<EmpInfoDTO> mgrInfoList = empMapper.selectMgrInfoList(param);
+
+        return mgrInfoList;
     }
 }
