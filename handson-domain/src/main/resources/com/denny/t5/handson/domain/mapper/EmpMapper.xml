@@ -129,6 +129,14 @@
       EMP.EMP_ID
   </select>
 
+  <!-- 最大社員IDを取得する。 -->
+  <select id="selectMaxEmpId" parameterType="java.lang.String" resultType="java.lang.String" >
+    SELECT
+      MAX(EMP_ID)
+    FROM
+      EMP
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--
       WARNING - @mbg.generated
@@ -150,7 +158,7 @@
       )
     values (#{empId,jdbcType=INTEGER}, #{ename,jdbcType=VARCHAR}, #{jobId,jdbcType=VARCHAR},
       #{mgr,jdbcType=VARCHAR}, #{hiredDate,jdbcType=DATE}, #{sal,jdbcType=INTEGER}, #{deptId,jdbcType=VARCHAR},
-      #{delFlg,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}
+      #{delFlg,jdbcType=VARCHAR}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP
       )
   </insert>
   <insert id="insertSelective" parameterType="com.denny.t5.handson.domain.model.entity.Emp">
@@ -217,12 +225,8 @@
       <if test="delFlg != null">
         #{delFlg,jdbcType=VARCHAR},
       </if>
-      <if test="createdAt != null">
-        #{createdAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updatedAt != null">
-        #{updatedAt,jdbcType=TIMESTAMP},
-      </if>
+        CURRENT_TIMESTAMP,
+        CURRENT_TIMESTAMP,
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.denny.t5.handson.domain.model.entity.Emp">
@@ -254,12 +258,7 @@
       <if test="delFlg != null">
         DEL_FLG = #{delFlg,jdbcType=VARCHAR},
       </if>
-      <if test="createdAt != null">
-        CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updatedAt != null">
-        UPDATED_AT = #{updatedAt,jdbcType=TIMESTAMP},
-      </if>
+        UPDATED_AT = CURRENT_TIMESTAMP,
     </set>
     where EMP_ID = #{empId,jdbcType=INTEGER}
   </update>
@@ -277,8 +276,7 @@
       SAL = #{sal,jdbcType=INTEGER},
       DEPT_ID = #{deptId,jdbcType=VARCHAR},
       DEL_FLG = #{delFlg,jdbcType=VARCHAR},
-      CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},
-      UPDATED_AT = #{updatedAt,jdbcType=TIMESTAMP}
+      UPDATED_AT = CURRENT_TIMESTAMP
     where EMP_ID = #{empId,jdbcType=INTEGER}
   </update>
 </mapper>

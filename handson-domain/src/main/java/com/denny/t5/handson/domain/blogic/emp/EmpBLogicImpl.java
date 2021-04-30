@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -57,5 +58,35 @@ public class EmpBLogicImpl implements EmpBLogic {
         List<EmpInfoDTO> mgrInfoList = empMapper.selectMgrInfoList(param);
 
         return mgrInfoList;
+    }
+
+    @Override
+    public String updateEmpInfo(Emp emp) {
+
+        if (StringUtils.isEmpty(emp.getEmpId())) {
+
+            String newEmpId = generateEmpId();
+            emp.setEmpId(newEmpId);
+            emp.setDelFlg("0");
+
+            empMapper.insert(emp);
+        } else {
+
+            empMapper.updateByPrimaryKeySelective(emp);
+        }
+
+        return emp.getEmpId();
+    }
+
+    /**
+     * 社員ID生成処理
+     *
+     * @return 生成された社員ID
+     */
+    private String generateEmpId() {
+
+        String curMaxEmpId = empMapper.selectMaxEmpId();
+
+        return String.format("%8d", Integer.valueOf(curMaxEmpId) + 1);
     }
 }

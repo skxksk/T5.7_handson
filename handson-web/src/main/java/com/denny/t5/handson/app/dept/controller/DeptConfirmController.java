@@ -23,11 +23,6 @@ public class DeptConfirmController {
     @Inject
     private DeptConfirmBLogic deptConfirmBLogic;
 
-//    @ModelAttribute
-//    public DeptConfirmForm setUpForm() {
-//        return new DeptConfirmForm();
-//    }
-
     /**
      * Simply selects the home view to render by returning its name.
      */

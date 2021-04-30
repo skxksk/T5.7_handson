@@ -24,51 +24,85 @@ function selectMgr(){
     <table>
         <tbody>
             <tr>
-                <td>社員ID</td>
-                <td><form:input path="empId" disabled="true"/></td>
+                <td style="width:30%"><form:label path="empId">社員ID</form:label></td>
+                <td>
+                <form:hidden path="empId" />
+                <c:choose>
+                  <c:when test="${empty empEditForm.empId}">
+                      社員IDは自動生成されます。
+                  </c:when>
+                  <c:otherwise>
+                      <c:out value="${empEditForm.empId}" />
+                  </c:otherwise>
+                </c:choose>
+                </td>
             </tr>
             <tr>
-                <td>社員名</td>
-                <td><form:input path="ename" /></td>
+                <td><form:label path="ename">社員名</form:label></td>
+                <td>
+                    <form:input path="ename" />
+                    <form:errors path="ename" cssStyle="color:red" />
+                </td>
             </tr>
             <tr>
-                <td>部署</td>
+                <td><form:label path="deptId">部署</form:label></td>
                 <td>
                     <%-- <form:select path="empEditForm.deptId" items="${CL_DEPT}" /> --%>
                     <form:select path="deptId">
                         <form:option value="">--部署--</form:option>
                         <form:options items="${CL_DEPT}" />
                     </form:select>
+                    <form:errors path="deptId" cssStyle="color:red" />
                 </td>
             </tr>
             <tr>
-                <td>役職</td>
+                <td><form:label path="jobId">役職</form:label></td>
                 <td>
                     <form:select path="jobId">
                         <form:option value="">--役職--</form:option>
                         <form:options items="${CL_JOB}" />
                     </form:select>
+                    <form:errors path="jobId" cssStyle="color:red" />
                 </td>
             </tr>
             <tr>
-                <td>マネージャ</td>
+                <td><form:label path="mgr">マネージャ</form:label></td>
                 <td>
-                    <form:input path="mgr" readonly="true"/>
-                    <form:input path="mgrName" disabled="true"/>
+                    <form:input path="mgr" readonly="true" />
+                    <form:input path="mgrName" readonly="true" />
                     <a href="#" onclick="selectMgr();">選択</a>
+                    <form:errors path="mgr" cssStyle="color:red" />
                 </td>
             </tr>
             <tr>
-                <td>雇用日</td>
-                <td><input type="date" id="hiredDate" name="hiredDate" value="<fmt:formatDate value="${empEditForm.hiredDate}" pattern="yyyy-MM-dd" />"></td>
+                <td><form:label path="hiredDate">雇用日</form:label></td>
+                <td>
+<%--                     <input type="date" id="hiredDate" name="hiredDate"
+                            value="<fmt:formatDate value="${empEditForm.hiredDate}" pattern="yyyy-MM-dd" />">
+--%>
+                    <input type="date" name="hiredDate" value="${empEditForm.hiredDate}" ><c:out value="${empEditForm.hiredDate}" />
+                    <form:errors path="hiredDate" cssStyle="color:red" />
+                </td>
             </tr>
             <tr>
-                <td>給与</td>
-                <td><form:input path="sal" /></td>
+                <td><form:label path="sal">給与</form:label></td>
+                <td>
+                    <form:input path="sal" />
+                    <form:errors path="sal" cssStyle="color:red" />
+                </td>
             </tr>
         </tbody>
     </table>
-    <%-- <form:button>確認</form:button> --%>
+
+    <c:choose>
+      <c:when test="${empty empEditForm.empId}">
+        <form:button name="update">登録</form:button>
+      </c:when>
+      <c:otherwise>
+        <form:button name="update">更新</form:button>
+      </c:otherwise>
+    </c:choose>
+
     </form:form>
 </body>
 </html>
